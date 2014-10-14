@@ -1,0 +1,19 @@
+<div class="pagination-centered" ng-if="report.pageSize < report.rows.length">
+	<ul class="pagination">
+		<li class="arrow" ng-class="{unavailable: !report.start}"><a href="" ng-click="previousPage()">&laquo; Previous</a></li>
+		<li class="current"><a href="">{{report.start+1}}-{{canNextPage() ? (report.start + report.pageSize) : report.rows.length}} of {{ report.serverCount || report.rows.length}}</a></li>
+		<li class="arrow" ng-class="{unavailable: !canNextPage()}"><a href="" ng-click="nextPage()">Next &raquo;</a></li>
+	</ul>
+</div>
+<table>
+	<thead>
+	<tr>
+		<th ng-repeat="col in columns"><a href="" class="column-sort" ng-class="{active: isOrderBy(col), disabled: !col.sortable}" ng-click="orderBy(col)">{{col.label}} <i class="fa fa-caret-up" ng-if="report.orderBy.indexOf(col.id) != -1" ng-class="{'rotate-180':report.orderBy.indexOf('-')==0}"></i></a></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in rows | orderBy:report.orderBy | page:report.start:report.pageSize" ng-click="clickRow(row)">
+		<td ng-repeat="col in columns" class="{{col.class}}">{{row[col.id] | formatFilter : col.type : col.format}}</td>
+	</tr>
+	</tbody>
+</table>

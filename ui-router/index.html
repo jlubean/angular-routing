@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Demo: ui-router</title>
+	<link rel="stylesheet" href="lib/foundation/foundation.min.css" />
+	<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="app.css" />
+	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/foundation/foundation.min.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular/angular-ui-router.min.js"></script>
+	<script src="lib/ct-ui-router-extras.min.js"></script>
+	<script src="app-module.js"></script>
+	<script src="menu-controller.js"></script>
+	<script src="preferences-controller.js"></script>
+	<script src="reports/format-filter.js"></script>
+	<script src="reports/page-filter.js"></script>
+	<script src="reports/report-controller.js"></script>
+	<script src="reports/report-filters-controller.js"></script>
+	<script src="reports/report-header-controller.js"></script>
+	<script src="reports/report-service.js"></script>
+	<script src="reports/report-table-controller.js"></script>
+</head>
+<body>
+	<div ui-view="app"></div>
+	<script>
+		$(document).foundation();
+	</script>
+</body>
+</html>

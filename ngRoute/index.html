@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Demo: ngRoute</title>
+	<link rel="stylesheet" href="lib/foundation/foundation.min.css" />
+	<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="app.css" />
+	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/foundation/foundation.min.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular/angular-route.min.js"></script>
+	<script src="app-module.js"></script>
+	<script src="menu-controller.js"></script>
+	<script src="preferences-controller.js"></script>
+	<script src="reports/format-filter.js"></script>
+	<script src="reports/page-filter.js"></script>
+	<script src="reports/report-controller.js"></script>
+	<script src="reports/report-service.js"></script>
+</head>
+<body>
+	<div class="row" ng-controller="MenuController">
+		<div class="small-12 medium-3 columns">
+			<dl class="accordion" data-accordion>
+				<dd class="accordion-navigation" ng-repeat="item in items" ng-class="{'active': item.active}">
+					<a ng-click="clickItem(item)">{{item.name}}</a>
+					<div class="content" ng-class="{'active': item.active}" ng-if="item.items">
+						<ul class="side-nav">
+							<li ng-repeat="subItem in item.items" ng-class="{'active': subItem.active}"><a ng-click="clickItem(item,subItem)">{{subItem.name}}</a></li>
+						</ul>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<div ng-view="main" class="small-12 medium-9 columns"></div>
+	</div>
+	<script>
+		$(document).foundation();
+	</script>
+</body>
+</html>

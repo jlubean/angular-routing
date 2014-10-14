@@ -1,0 +1,18 @@
+<div class="filters" ng-class="{expanded: expanded}">
+	<div class="row">
+		<div class="medium-6 column" ng-class="{'end': $index==filters.length-1}" ng-repeat="column in filters">
+			<label>{{column.label}}
+				<select ng-if="column.filterType=='select'">
+					<option></option>
+					<option value="{{option.value}}" ng-repeat="option in column.filterOptions">{{option.label}}</option>
+				</select>
+				<input type="text" placeholder="Search" ng-if="column.filterType=='input'" />
+				<div class="row" ng-if="column.filterType=='range'">
+					<div class="small-5 column"><input type="text" placeholder="" class="range" ng-model="column.filterFrom" /></div>
+					<div class="small-1 column text-center">to</div>
+					<div class="small-5 column"><input type="text" placeholder="" class="range" ng-model="column.filterTo" /></div>
+				</div>
+			</label>
+		</div>
+	</div>
+</div>

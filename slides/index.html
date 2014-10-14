@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>Routing in AngularJS</title>
+
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+	<!-- Extension CSS files go here. Remove or add as needed. -->
+	<link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+	<link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+	<link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+	<!-- Basic black and white print styles -->
+	<link rel="stylesheet" media="print" href="core/print.css">
+	<style>
+		h1 {
+			color: black;
+		}
+		h1 img {
+			margin-bottom: 20px;
+			height: 8rem;
+		}
+		h1 span {
+			font-size: 2rem;
+			color: #9e3d34;
+		}
+		h2 {
+			color: #9e3d34;
+		}
+		.slide-footer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 50px;
+			background-color: #202945;
+		}
+		.sort-2014-logo {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 50px;
+			margin: 0;
+		}
+		.angular-logo {
+			position: absolute;
+			bottom: 0;
+			right: 10px;
+			margin: 0;
+			height: 70px;
+		}
+		.credits {
+			font-size: 14px;
+			line-height: 16px;
+		}
+		.deck-container {
+			background: -webkit-linear-gradient(top, #ffffff 0%, #f1f3e8 100%);
+			background: linear-gradient(top, #ffffff 0%, #f1f3e8 100%);
+		}
+		.deck-status {
+			top: 10px;
+			bottom: auto;
+		}
+
+		@media print {
+			h1 {
+				text-align: center;
+				text-align: center;
+			}
+			h1 span {
+				display: block;
+			}
+
+			a, a:hover, a:focus, a:active, a:visited {
+				color: #599;
+			}
+
+			.slide-footer, .goto-form, .deck-status, .deck-nav {
+				display: none;
+			}
+		}
+	</style>
+
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+
+
+
+</head>
+<body>
+	<div class="deck-container">
+
+	<!-- Begin slides. Just make elements with a class of slide. -->
+
+	<section class="slide">
+		<h1>Routing in<br><img src="AngularJS-huge.png"><span>Jason LuBean</span></h1>
+	</section>
+
+	<section class="slide">
+		<h2>What is Routing?</h2>
+		<div>
+			<ul>
+				<li>URL is mapped to a view</li>
+				<li>View is a cached HTML template</li>
+				<li>View is managed by a controller</li>
+			</ul>
+		</div>
+		<div class="slide">
+			<pre><code>AngularJS comes with the <span style="color:green">ngRoute</span> module.</code></pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>ngRoute</h2>
+		<div>
+			<p>Inject module and configure routes:</p>
+			<pre><code>angular.module('app', ['<span style="color:green">ngRoute</span>'])
+	.config(['$routeProvider',
+	function($routeProvider) {
+		$routeProvider.when('<span style="color:orange">/view1</span>', {
+			<span style="color:brown">templateUrl</span>: 'view1.html',
+			<span style="color:brown">controller</span>: 'View1Controller'
+		});
+	}]);</code></pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>ngRoute</h2>
+		<div>
+			<p>Add directive to HTML page:</p>
+			<pre><code>&lt;div <span style="color:green">ng-view</span>&gt;&lt;/div&gt;</code></pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>ngRoute</h2>
+		<div>
+			<h1>Demo</h1>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>ngRoute</h2>
+		<div>
+			<ul>
+				<li><span style="color:green">$routeProvider</span> - map URL to template/controller</li>
+				<li><span style="color:green">$routeParams</span> - combination of $location's search() and path(), with path params taking precedence over search params when name collisions occur</li>
+				<li><span style="color:green">$routeChangeSuccess</span> - event available to $rootScope</li>
+				<li><span style="color:green">$templateCache</span> - where templates are cached</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>ngRoute</h2>
+		<div>
+			Limitations:
+			<ul>
+				<li>No parallel/sibling views - only one ng-view on an HTML page</li>
+				<li>No named views</li>
+				<li>No nested views</li>
+				<li>Can't switch to a view without changing the URL</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router</h2>
+		<p><a href="https://github.com/angular-ui/ui-router">https://github.com/angular-ui/ui-router</a></p>
+		<ul>
+			<li>App becomes a state machine</li>
+			<li>Organize the app around states</li>
+			<li>Each state may have an optional URL route</li>
+			<li>States are bound to <span style="color:green">named</span>, <span style="color:green">sibling/parallel</span>, and <span style="color:green">nested</span> views</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router</h2>
+		<div>
+			<p>Inject module and configure states:</p>
+			<pre><code>angular.module('app', ['<span style="color:green">ui.router</span>'])
+	.config(['$stateProvider',
+	function($stateProvider) {
+		$stateProvider.state('<span style="color:orange">state1</span>', {
+			<span style="color:brown">url</span>: '/view1',
+			<span style="color:brown">templateUrl</span>: 'view1.html',
+			<span style="color:brown">controller</span>: 'View1Controller'
+		});
+	}]);</code></pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router</h2>
+		<div>
+			<p>Add directive to HTML page:</p>
+			<pre><code>&lt;div <span style="color:green">ui-view="home"</span>&gt;&lt;/div&gt;</code></pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router</h2>
+		<div>
+			<h1>Demo</h1>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router</h2>
+		<div>
+			<ul>
+				<li><span style="color:green">$stateProvider</span> - map state to views/controllers and optional URL</li>
+				<li><span style="color:green">$urlRouterProvider</span> - define rules for matching a url to a state</li>
+				<li><span style="color:green">$state</span> - current state, go/transition to a state, determine if equal to or child of a state</li>
+				<li><span style="color:green">$stateParams</span> - url params and custom params available to the current state.</li>
+				<li><span style="color:green">$stateChangeSuccess </span> - event available to $rootScope</li>
+				<li><span style="color:green">ui-sref directive</span> - use in place of href to map anchor tag click to a state</li>
+				<li><span style="color:green">$templateCache</span> - where templates are cached</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>grunt-angular-templates</h2>
+		<div>
+			<p></p><a href="https://www.npmjs.org/package/grunt-angular-templates">https://www.npmjs.org/package/grunt-angular-templates</a></p>
+			<ul>
+				<li>Grunt build plugin</li>
+				<li>Speed up your AngularJS app by automatically minifying, combining, and caching your HTML templates with $templateCache.</li>
+				<li>Template HTML is embedded in JavaScript.</li>
+				<li>Eliminate the need to download each template HTML file separately.</li>
+				<li>Works well with grunt-usemin.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>grunt-angular-templates</h2>
+		<div>
+			<p>Code generated and appended to your combined JavaScript before minification:</p>
+			<pre><code>angular.module('app').run(["$templateCache", function($templateCache) {
+	$templateCache.put("home.html",
+		<span style="color:green">// contents for home.html ...</span>
+	);
+	...
+	$templateCache.put("preferences.html",
+		<span style="color:green">// contents for preferences.html</span>
+	);
+}]);</code></pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router Extras</h2>
+		<p><a href="http://christopherthielen.github.io/ui-router-extras">http://christopherthielen.github.io/ui-router-extras</a></p>
+		<ul>
+			<li>Sticky/Parallel State</li>
+			<li>Deep State Redirect</li>
+			<li>Future State</li>
+			<li>Previous State</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>UI-Router Extras</h2>
+		<div>
+			<p>Inject module and configure states:</p>
+			<pre><code>angular.module('app', ['ui.router', <span style="color:green">ct.ui.router.extras</span>'])
+.config(['$stateProvider', '$urlRouterProvider',
+function($stateProvider, $urlRouterProvider) {
+	$stateProvider.state('foo.bar', {
+		views: { ... },
+		<span style="color:brown">deepStateRedirect</span>: true,
+		<span style="color:brown">sticky</span>: true
+	});
+}]);</code></pre>
+		</div>
+	</section>
+
+
+	<section class="slide">
+		<h2>UI-Router Extras</h2>
+		<div>
+			<h1>Demo</h1>
+		</div>
+	</section>
+
+	<section class="slide" style="background-color: #202945">
+		<h1 style="background-color: #202945; margin:0; padding:0; border-top: #fff solid 6px; border-bottom: #fff solid 6px;"><img src="2014-banner2.png" style="margin-bottom: 0; height: 90px"></h1>
+		<div class="vcenter" style="margin-top: 240px; color: #fff; text-shadow: none; font-size: 1rem; font-weight: none; font-family: 'Times New Roman'; text-align: center"><img src="lds.png" style="height: 80px"><br><br><br>
+			&copy; 2014 by Intellectual Reserve, Inc. All rights reserved
+		</div>
+	</section>
+
+	<section class="slide">
+		<h3>Credits</h3>
+		<p class="credits">
+		AngularJS logos are the property of Google and AngularJS.org. Used with permission:
+		<br><br>
+		MIT License. (https://github.com/angular/angular.js/blob/master/LICENSE)
+		AngularJS.org is licensed under Creative Commons BY 3.0. (http://creativecommons.org/licenses/by/3.0/)
+		<br><br>
+		Title: AngularJS Logo - Huge
+		Author: AngularJS (author of the latest push is Igor Minar)
+		Location: https://github.com/angular/angular.js/blob/master/images/logo/AngularJS.exports/AngularJS-huge.png (No changes).
+		<br><br>
+		Title: AngularJS Sheild - Small
+		Author: AngularJS (author of the latest push is Igor Minar)
+		Location: https://github.com/angular/angular.js/blob/master/images/logo/AngularJS-Shield.exports/AngularJS-Shield-small.png (resized to fit on slide).<br>
+		</p>
+	</section>
+
+
+	<!-- End slides. -->
+
+	<!-- Begin extension snippets. Add or remove as needed. -->
+
+	<!-- deck.navigation snippet -->
+	<div aria-role="navigation" class="deck-nav">
+		<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+		<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+	</div>
+
+	<!-- deck.status snippet -->
+	<p class="deck-status" aria-role="status">
+		<span class="deck-status-current"></span>
+		/
+		<span class="deck-status-total"></span>
+	</p>
+
+	<!-- deck.goto snippet -->
+	<form action="." method="get" class="goto-form">
+		<label for="goto-slide">Go to slide:</label>
+		<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+		<datalist id="goto-datalist"></datalist>
+		<input type="submit" value="Go">
+	</form>
+
+	<!-- End extension snippets. -->
+
+	<div class="slide-footer">
+		<img src="sort-2014.png" class="sort-2014-logo">
+		<img src="AngularJS-Shield-small.png" class="angular-logo">
+	</div>
+</div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>

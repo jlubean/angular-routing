@@ -1,0 +1,10 @@
+<dl class="accordion" data-accordion>
+	<dd class="accordion-navigation" ng-repeat="item in items" ng-class="{active: item.active}">
+		<a ng-click="clickItem(item)">{{item.name}}</a>
+		<div class="content" ng-class="{active: item.active}" ng-if="item.items">
+			<ul class="side-nav">
+				<li ng-repeat="subItem in item.items" ng-class="{active: subItem.active}"><a ng-click="clickItem(item,subItem)">{{subItem.name}}</a></li>
+			</ul>
+		</div>
+	</dd>
+</dl>

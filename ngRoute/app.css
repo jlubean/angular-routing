@@ -1,0 +1,109 @@
+body {
+	padding: 20px;
+}
+
+.accordion .accordion-navigation>a, .accordion dd>a {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.accordion .accordion-navigation .content {
+	border-left: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+}
+
+.side-nav {
+	padding: 0px;
+}
+
+.side-nav li a:not(.button) {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+ul.pagination li.unavailable a {
+	color: #ccc;
+}
+
+.filters {
+	overflow: hidden;
+	max-height: 0px;
+	-moz-transition: max-height .5s cubic-bezier(0, 1, 0.5, 1);
+	-webkit-transition: max-height .5s cubic-bezier(0, 1, 0.5, 1);
+	-o-transition: max-height .5s cubic-bezier(0, 1, 0.5, 1);
+	transition: max-height .5s cubic-bezier(0, 1, 0.5, 1);
+}
+
+.filters > .row {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+
+.expanded {
+	max-height: 1000px;
+	-moz-transition: max-height 1s cubic-bezier(0, 1, 0.5, 1);
+	-webkit-transition: max-height 1s cubic-bezier(0, 1, 0.5, 1);
+	-o-transition: max-height 1s cubic-bezier(0, 1, 0.5, 1);
+	transition: max-height 1s cubic-bezier(0, 1, 0.5, 1);
+}
+
+.expand-icon {
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.rotate-180 {
+	-ms-transform: rotate(-180deg);
+	-webkit-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.report-title {
+	margin-bottom: 12px;
+}
+
+.pagination {
+	margin-bottom: 12px;
+}
+
+.decimal, .currency {
+	text-align: right;
+}
+
+.column-sort {
+	display: block;
+}
+
+.column-sort > i {
+	color: #ccc;
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.column-sort > i.rotate-180 {
+	-ms-transform: rotate(-180deg);
+	-webkit-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.column-sort.active i {
+	color: #008cba;
+}
+
+.column-sort.disabled {
+	color: #000;
+}
