@@ -20,8 +20,6 @@ function($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('app.main.about', {
-		sticky: true,
-		deepStateRedirect: true,
 		url: '/about',
 		views: {
 			'main@app': {
@@ -30,8 +28,6 @@ function($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('app.main.preferences', {
-		sticky: true,
-		deepStateRedirect: true,
 		url: '/preferences',
 		views: {
 			'main@app': {
@@ -41,8 +37,6 @@ function($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('app.main.report', {
-		sticky: true,
-		deepStateRedirect: true,
 		views: {
 			'main@app': {
 				templateUrl: 'reports/report-view.html'
